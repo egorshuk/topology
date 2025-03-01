@@ -1,0 +1,68 @@
+\ProvidesPackage{be-my-geometry}
+\RequirePackage[svgnames]{xcolor}
+
+% Main sizes
+\RequirePackage[
+	a4paper,
+	left = 1.5cm, 
+	right = 1.5cm, 
+	top = 2.5cm, 
+	bottom = 3cm,
+	footnotesep = 5mm
+]{geometry}
+
+
+% Misc
+\setlength{\headheight}{30pt}
+\def\columnseprulecolor{\color{Navy}}
+\setlength{\columnsep}{1cm}
+\setlength{\columnseprule}{1pt}
+\interfootnotelinepenalty=10000
+\counterwithin*{footnote}{page}
+
+
+% Fancy...
+\RequirePackage{fancyhdr, hyperref}
+
+%\def\headrule{{              % double ruler in header             
+%		\if@fancyplain\let\headrulewidth \plainheadrulewidth \fi
+%		\hrule\@height\headrulewidth height 0.5pt\@width\headwidth\vskip 2pt %
+%		\hrule\@height\headrulewidth height 1pt \@width \headwidth\vskip-\headrulewidth\vskip-4pt %height2pt
+%}}
+
+
+\pagestyle{fancy}
+\fancyhead{}
+\fancyhead[RO]{
+	\href{https://t.me/egorrshuk}{егоррррршук} 
+}
+
+\fancyhead[LO, RE]{
+	\nouppercase{\leftmark \\
+		\rightmark}
+}
+\fancyfoot{}
+\fancyfoot[LO, RE]{\thepage}
+
+
+
+% datepage
+\DeclareOption{datepage}{
+	\newcommand{\makedate}[1]{\fancypagestyle{date}
+		{\fancyhead{}
+			\fancyhead[RO]{
+				\href{https://t.me/egorrshuk}{егоррррршук} \\
+			}
+			\fancyhead[LO, RE]{
+				\nouppercase{\leftmark \\
+					\rightmark}
+			}
+			\fancyfoot{}
+			
+			\fancyfoot[LO, RE]{\thepage}
+			\fancyfoot[LE, RO]{#1}
+		}
+		\thispagestyle{date}
+	}
+}
+\ProcessOptions\relax

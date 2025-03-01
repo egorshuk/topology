@@ -1,0 +1,164 @@
+\ProvidesPackage{lecture-style}
+\usepackage[utf8]{inputenc}
+\usepackage[T2A]{fontenc}
+\usepackage[russian]{babel}
+\usepackage{amsmath, amssymb, amsfonts, amsthm, witharrows}
+\usepackage{graphicx, fancyhdr, enumitem, xcolor, multicol, import, epigraph}
+\usepackage[glows]{tikzpingus}
+\graphicspath{{./graphics/}}
+\usepackage[
+    colorlinks=true,
+    linkcolor=red,
+    urlcolor=MidnightBlue,
+    pdftitle={Введение в топологию},
+    pdfauthor={Лунёв Егор Артёмович},
+]{hyperref}
+\usepackage[russian, noabbrev]{cleveref}
+
+\usepackage[inline]{asymptote}
+\begin{asydef}
+    settings.outformat = "pdf";
+\end{asydef}
+
+\usepackage[
+    a5paper,
+    left = 1.5cm, 
+    right = 1.5cm, 
+    top = 2.5cm, 
+    bottom = 3cm,
+    footnotesep = 5mm
+]{geometry}
+\setlength{\headheight}{30pt}
+\setlength{\columnsep}{1cm}
+\setlength{\columnseprule}{1pt}
+\interfootnotelinepenalty=10000
+\counterwithin*{footnote}{page}
+
+\def\columnseprulecolor{\color{blue}}
+\pagestyle{fancy}
+\fancyhead{}
+\fancyhead[RO]{
+    \href{https://t.me/egorrshuk}{егоррррршук}
+}
+
+\fancyhead[LO, RE]{
+    \nouppercase{\leftmark \\
+    \rightmark}
+}
+\fancyfoot{}
+\fancyfoot[LO, RE]{\thepage}
+
+\newcommand{\ans}[1]{\textbf{Ответ:} #1}
+\newlist{tasks}{enumerate}{2}
+\setlist[tasks, 1]{
+    label={\textbf{Задача \arabic{tasksi}:}},
+    leftmargin = 1.9cm,
+}
+\setlist[tasks, 2]{
+    label=(\arabic{tasksi}.\alph{tasksii}),
+    leftmargin = 15pt,
+}
+\crefname{tasksi}{задачи}{задач}
+\crefname{tasksii}{задачи}{задач}
+\crefname{theorem}{теоремы}{теорем}
+\crefname{lemma}{леммы}{лемм}
+\crefname{equation}{уравнения}{уравнения}
+\crefname{corollary}{следствия}{следствия}
+\crefname{definition}{определения}{определения}
+\crefname{remark}{замечания}{замечаний}
+\crefname{proposition}{утверждения}{утверждений}
+\crefname{example}{примера}{примеров}
+\crefname{table}{таблицы}{таблиц}
+
+\theoremstyle{plain}
+\newtheorem{theorem}{Теорема}[section]
+\newtheorem{lemma}[theorem]{Лемма}
+\newtheorem{proposition}[theorem]{Утверждение}
+\newtheorem{corollary}{Следствие}[theorem]
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Определение}
+\theoremstyle{remark}
+\newtheorem*{remark}{Замечание}
+\newtheorem{example}{Пример}
+\counterwithin*{example}{theorem}
+\counterwithin*{example}{corollary}
+\counterwithin*{example}{section}
+\counterwithin{equation}{section}
+
+%\begin{DispWithArrows}[displaystyle, wrap-lines, tagged-lines = last, fleqn, mathindent = 0 pt]
+
+%\end{DispWithArrows}
+
+\newcommand{\such}{\,|\,}
+\newcommand{\R}{\mathbb R}
+\newcommand{\Q}{\mathbb Q}
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\N}{\mathbb N}
+\newcommand{\T}{\mathcal T}
+\newcommand{\powerset}[1]{\mathcal{P}(#1)}
+\newcommand{\defeq}{\overset{def}{=}}
+\makeatletter
+\newcommand*{\coloneq}{\mathrel{\rlap{%
+                     \raisebox{0.3ex}{$\m@th\cdot$}}%
+                     \raisebox{-0.3ex}{$\m@th\cdot$}}%
+                     =}
+\newcommand*{\eqcolon}{=
+                     \mathrel{\rlap{%
+                     \raisebox{0.3ex}{$\m@th\cdot$}}%
+                     \raisebox{-0.3ex}{$\m@th\cdot$}}%
+                     }
+\makeatother
+
+\newcommand{\ifandonly}{\Longleftrightarrow}
+
+
+\newlist{conditions}{enumerate}{2}
+
+\setlist[conditions, 1]
+{label=(\roman{conditionsi}), %(i), (ii), (iii), ...
+leftmargin=1cm,
+rightmargin=1cm
+}
+\setlist[conditions, 2]
+{label=(\roman{conditionsi}.\alph{conditionsii}), % (i.a), (i.b), (i.c)
+leftmargin=1cm,
+rightmargin=2cm}
+
+
+\newcommand{\ifandonlyproof}[2]{
+\begin{multicols}{2}
+\fbox{$\implies$} \hspace{2mm} #1 
+\columnbreak 
+
+\noindent\fbox{$\impliedby$} \hspace{2mm} #2
+\end{multicols}
+}
+
+\newcommand*\rfrac[2]{{}^{#1}\!/_{#2}}
+
+\renewcommand{\date}[1]{\fancypagestyle{date}
+{\fancyhead{}
+\fancyhead[RO]{
+    \href{https://t.me/egorrshuk}{егоррррршук} 
+}
+\fancyhead[LO, RE]{
+    \nouppercase{\leftmark \\
+    \rightmark}
+}
+\fancyfoot{}
+\fancyfoot[LO, RE]{\thepage}
+\fancyfoot[LE, RO]{#1}
+}
+\thispagestyle{date}
+}
+
+\DeclareMathOperator{\Int}{Int}
+\DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\pr}{pr}
+
+\renewcommand{\bar}{\overline}
+\renewcommand{\epsilon}{\varepsilon}
+\renewcommand{\geq}{\geqslant}
+\renewcommand{\leq}{\leqslant}
+\renewcommand{\emptyset}{\varnothing}
+\renewcommand{\phi}{\varphi}

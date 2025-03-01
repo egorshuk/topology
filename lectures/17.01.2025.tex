@@ -1,0 +1,81 @@
+\pagebreak\date{17 января 2025}
+%\epigraph{Мы начинаем!}{Тиморин В.А.}
+\begin{theorem}\label{th:7.9}
+    Топологическое простанство $X$ связан тогда и только тогда, когда любая непрерывная функция $f\colon X\to\{0,1\}\footnote{Такое множество называется двоеточием.}$ постоянна.
+\end{theorem}
+\begin{proof}
+    \ifandonlyproof{Пусть $X$ -- не связно, тогда $X = A \cap B$, $A\cap B = \varnothing$, $A, B \neq \varnothing$, $A, B\in \T_X.$
+    Тогда рассмотрим такое отображение $f(x) = \begin{cases}
+        0, &x\in A \\ 1, &x\in B 
+    \end{cases}.$}{Если $f\colon X \to \{0, 1\}$ непостоянна и непрерывна, то $f^{-1}\{0\} \subset X$ нетривиальное открытое и замкнутое множество.}
+\end{proof}
+
+\begin{definition}[Локальная постоянная функция]
+    Функция $f\colon X\to \R$ называется локально постоянной, если \[(\forall x \in X)(\exists\text{ окрестность } O(x))\quad f|_{O(x)}=const=f(x).\] Обозначение $H^0(X, \R)$ -- векторное пространство локально постоянных функций из $X\to \R.$ 
+\end{definition}
+\begin{remark}
+    Это определение эквивалентно, что $f$ непрерывна относительно дискретной топологии в $\R$.
+\end{remark}
+\begin{example}
+    \[\int\frac 1 x \mathrm dx = \ln |x| + C, \quad C \in H^0(X, \R).\]
+\end{example}
+\begin{theorem}
+    Топологическое пространство $X$ связно тогда и только тогда, когда \[H^0(X, \R)=\{const\}.\]
+\end{theorem}
+\begin{proof}
+    \ifandonlyproof{
+    Если $X$ не связно, тогда из \cref{th:7.9} существует непостоянная $f:X\to\{0,1\}, \quad f \in H^0(X, \R).$}{Если $f\in H^0$, $f\neq const$. Тогда $f^{-1}\{f(x_0)\}$ нетривиальное открытое и замкнутое множество.} 
+\end{proof}
+
+\subsubsection{Компоненты связности}
+
+\begin{definition}[Компоненты связности]
+    Отношение $\sim$ на $X$ таково, что $x\sim y$, если существует связное $x,y\in C\subset X.$ Классы эквивалентности называются компонентами связности.
+\end{definition}
+\begin{proof}[Доказательство транзитивности]
+    Пусть $x,y \in A$ и $y, z\in B$, где $A, B$ связны. Тогда нужно взять $C\coloneq A\cup B$. Рассмотрим $f \in H^0(C, \R)$, тогда \begin{equation}f|_A = const=f(y), \quad f|_B=const=f(y)\implies f = const.\end{equation}  
+\end{proof}
+
+\begin{proposition}
+    Компоненты связности связны.
+\end{proposition}
+\begin{example}
+    $X = (0;1)$ -- одна компонента связности, т.к. $X$ само связно.
+\end{example}
+\begin{example}
+    $X = (0;1)\cup(1;2)$ -- две компоненты связности $(0;1)$ и $(1;2)$
+\end{example}
+\begin{example}
+    $X=\Q\subset \R$ с индуцированной топологией. Компоненты -- отдельные точки из $\Q$.
+\end{example}
+\begin{example}
+    $X = GL(n, \R) =\{A \in Mat(n, \R)\such \det A \neq 0\}\subset \R^{n^2}.$ Компонентами являются $\{A\in X\such \det A >0\}$ и $\{A\in X\such \det A < 0\}.$ Согласно непрерывному процессу Грама-Шмидта существует путь в $GL(n, \R)$ из любой $A$ в $O(n, 
+    \R)$. 
+\end{example}
+\begin{lemma}
+    Если $\det A >0$, то существует путь из $A$ в $E$. \[A\leadsto B \in SO(n, \R)\]
+\end{lemma}
+
+\begin{theorem}
+    Линейная связность влечет связность.
+\end{theorem}
+Значит $$(f\circ \alpha)(x)=(f\circ \alpha)(y)=(f\circ \alpha)(X).$$
+\begin{theorem}
+    Пусть $A\subset X$ связно, тогда $\bar A$ тоже связно.
+\end{theorem}
+\begin{proof}
+    Пусть $f\colon \bar A \to \{0,1\}$ непостоянная непрерывная функция. Тогда $f^{-1}\{0\} \cap A \neq \varnothing$, но и $f^{-1}\{1\}\cap A \neq \varnothing$. Тогда $f$ непостоянна на $A.$ 
+\end{proof}
+\begin{example}
+    $\bar{\{(x,y)\in\R^2\such y = \sin \frac 1 x, x > 0\}}$ связно, но не линейно связно.
+\end{example}
+
+\begin{theorem}
+    Если $X$ связно, а $f\colon X\to \R$ непрерывна, то $f$ принимает все промежуточные значения, то есть $f(X)$ -- промежуток.
+\end{theorem}
+\begin{proof}
+    $X$ связно, тогда $f(X)$ связно, тогда $f(X)$ промежуток.
+\end{proof}
+
+\section{Компакты}
+В $\R^n$ компактность означает замкнутость и ограниченность. В метрических пространствах компактность означает сиквенциальную компактность (из любой последовательности можно выделить сходящуюся подпоследовательность), потом докажем эквивалентность полноту и вполне ограниченность. В любых топологических пространствах же компактность означает, что из любого открытого покрытия можно выделить конечное подпокрытие.  

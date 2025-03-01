@@ -1,0 +1,181 @@
+\ProvidesPackage{homework-style}
+\usepackage[utf8]{inputenc}
+\usepackage[T2A]{fontenc}
+\usepackage[russian]{babel}
+\usepackage{amsmath, amssymb, amsfonts, amsthm, witharrows}
+\usepackage{graphicx, fancyhdr, enumitem, xcolor, multicol, import, wrapfig}
+\usepackage[svgnames]{xcolor}
+\usepackage[
+    colorlinks=true,
+    linkcolor=Crimson,
+    urlcolor=Navy,
+    pdftitle={Введение в топологию},
+    pdfauthor={Лунёв Егор Артёмович},
+]{hyperref}
+\graphicspath{{./graphics/}}
+\usepackage[russian, noabbrev]{cleveref}
+\usetikzlibrary{calc}
+\usepackage[inline]{asymptote}
+\begin{asydef}
+    import graph;
+    settings.outformat = "pdf";
+\end{asydef}
+
+\usepackage[
+    a5paper,
+    left = 1cm, 
+    right = 1cm, 
+    top = 2cm, 
+    bottom = 2.5cm,
+    footnotesep = 5mm
+]{geometry}
+\setlength{\headheight}{30pt}
+\setlength{\columnsep}{1cm}
+\setlength{\columnseprule}{1pt}
+\interfootnotelinepenalty=10000
+\counterwithin*{footnote}{page}
+
+\def\columnseprulecolor{\color{Navy}}
+
+\newcommand{\ans}[1]{\textbf{Ответ:} #1}
+\newlist{tasks}{enumerate}{2}
+\setlist[tasks, 1]{
+    label={\textbf{Задача \arabic{tasksi}:}},
+    leftmargin = 1mm,
+    labelsep = 5mm,
+    itemindent = 2.2cm
+}
+\setlist[tasks, 2]{
+    label=(\arabic{tasksi}.\alph{tasksii}),
+    leftmargin = 15pt,
+}
+\crefname{tasksi}{задачи}{задач}
+\crefname{tasksii}{задачи}{задач}
+\crefname{theorem}{теоремы}{теорем}
+\crefname{lemma}{леммы}{лемм}
+\crefname{equation}{уравнения}{уравнения}
+\crefname{corollary}{следствия}{следствия}
+\crefname{definition}{определения}{определения}
+\crefname{remark}{замечания}{замечаний}
+\crefname{proposition}{утверждения}{утверждений}
+\crefname{example}{примера}{примеров}
+\crefname{table}{таблицы}{таблиц}
+
+\theoremstyle{plain}
+\newtheorem{theorem}{Теорема}
+\newtheorem{lemma}[theorem]{Лемма}
+\newtheorem{proposition}[theorem]{Утверждение}
+\newtheorem{corollary}{Следствие}[theorem]
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Определение}
+\theoremstyle{remark}
+\newtheorem*{remark}{Замечание}
+\newtheorem{example}{Пример}
+
+%\begin{DispWithArrows}[displaystyle, wrap-lines, tagged-lines = last, fleqn, mathindent = 0 pt]
+
+%\end{DispWithArrows}
+
+\newcommand{\such}{\,|\,}
+\newcommand{\R}{\mathbb R}
+\newcommand{\Q}{\mathbb Q}
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\N}{\mathbb N}
+\newcommand{\T}{\mathcal T}
+\newcommand{\powerset}[1]{\mathcal{P}(#1)}
+\newcommand{\defeq}{\overset{def}{=}}
+\makeatletter
+\newcommand*{\coloneq}{\mathrel{\rlap{%
+                     \raisebox{0.3ex}{$\m@th\cdot$}}%
+                     \raisebox{-0.3ex}{$\m@th\cdot$}}%
+                     =}
+\newcommand*{\eqcolon}{=
+                     \mathrel{\rlap{%
+                     \raisebox{0.3ex}{$\m@th\cdot$}}%
+                     \raisebox{-0.3ex}{$\m@th\cdot$}}%
+                     }
+\makeatother
+
+\newcommand{\ifandonly}{\Longleftrightarrow}
+
+
+
+\makeatletter
+\renewcommand\tableofcontents{%
+    %\section*{\makebox[\linewidth][c]{\contentsname}%
+    %  \@mkboth{\MakeUppercase\contentsname}{\MakeUppercase\contentsname}}%
+    \hfill{
+    \begin{minipage}{0.5\linewidth}
+        \begin{multicols}{2}%
+            \@starttoc{toc}%
+        \end{multicols}
+    \end{minipage}
+    }\vspace{3mm}}
+\makeatother
+
+\newlist{conditions}{enumerate}{2}
+
+\setlist[conditions, 1]
+{label=(\roman{conditionsi}), %(i), (ii), (iii), ...
+leftmargin=1cm,
+rightmargin=.5cm
+}
+\setlist[conditions, 2]
+{label=(\roman{conditionsi}.\alph{conditionsii}), % (i.a), (i.b), (i.c)
+leftmargin=1cm,
+rightmargin=.5cm}
+
+
+\newcommand{\ifandonlyproof}[2]{
+\begin{multicols}{2}
+\fbox{$\implies$} \hspace{2mm} #1 
+\columnbreak 
+
+\noindent\fbox{$\impliedby$} \hspace{2mm} #2
+\end{multicols}
+}
+
+\newcommand*\rfrac[2]{{}^{#1}\!/_{#2}}
+
+\pagestyle{fancy}
+
+\newcommand{\dz}[1]{\pagestyle{fancy}
+\fancyhead{}
+\fancyhead[R]{
+    \href{https://t.me/egorrshuk}{егоррррршук}
+}
+\fancyhead[L]{
+    Введение в дискретную математику и топологию. \\
+    Домашка №#1
+}
+\fancyfoot{}
+\fancyfoot[C]{\thepage}
+
+\fancypagestyle{date}
+{\fancyhead{}
+
+\fancyhead[R]{
+    \href{https://t.me/egorrshuk}{егоррррршук} 
+}
+\fancyhead[L]{
+    Введение в дискретную математику и топологию. \\
+    Домашка №#1
+}
+\fancyfoot{}
+\fancyfoot[C]{\thepage}
+\fancyfoot[L]{\today}
+}
+\thispagestyle{date}
+
+}
+
+\DeclareMathOperator{\Int}{Int}
+\DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\pr}{pr}
+
+\renewcommand{\bar}{\overline}
+\renewcommand{\epsilon}{\varepsilon}
+\renewcommand{\geq}{\geqslant}
+\renewcommand{\leq}{\leqslant}
+\renewcommand{\emptyset}{\varnothing}
+\renewcommand{\phi}{\varphi}

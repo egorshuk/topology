@@ -1,0 +1,327 @@
+\date{11 декабря 2024}
+
+\section{Топологические пространства}
+
+
+\begin{definition}[Топология]
+    Топологией на множестве $X$ это множество $\mathcal T \subset \mathcal P(X)$, т.ч.
+    \begin{conditions}
+        \item $\varnothing, X \in \mathcal T$;
+        \item $(\forall A, B \in \mathcal T) \implies A \cap B \in \mathcal T;$
+        \item Если $(A_\lambda)_{\lambda \in \Lambda} \implies \bigcup_{\lambda\in\Lambda}A_\lambda \in \mathcal T.$
+    \end{conditions}
+
+    Множества $A_\lambda$ называются открытыми.
+\end{definition}
+
+\begin{definition}[Топологическое пространство]
+    Если $\mathcal T$ -- топология на $X$, то $(X, \mathcal T)$\footnote{Или просто $X$.} называется топологическим пространством.
+\end{definition}
+
+\date{18 декабря 2024}
+
+\begin{definition}
+    [Замкнутое множество]
+    Множество $A\subset X$ замкнуто, если $X \setminus A \in \T$
+\end{definition}
+
+\begin{corollary}
+    \begin{conditions}
+        \item $X, \varnothing$ замкнуты в $X$;
+        \item $A, B$ замкнуты в $X$, тогда и $A\cup B$ замкнуто в $X$;
+        \item $(A_\psi)_{\psi \in \Psi}$ замкнуты в $X$, тогда и $\bigcap_{\psi\in\Psi}A_\psi$ замкнуто в $X$.
+    \end{conditions}
+\end{corollary}
+
+\begin{definition}
+    [Замыкание множества]
+    Множество $A \subset X$, то замыкание \[
+    \bar A \defeq \bigcap_{\substack{A \subset Z\\ Z \text{ замкнуто}}} Z 
+    \] % спасибо мике за substack
+\end{definition}
+
+\begin{definition}
+    [Внутренность множества]
+    Множество $A \subset X$, то внутренность \[
+    \Int A = \bigcup_{\substack{V\subset A\\ V \in \T}}V.
+    \]
+\end{definition}
+
+\subsection{Плотное и нигде не плотное множество}
+
+\begin{definition}[Всюду плотное множество]
+    Множество $A\subset X$ всюду плотно в $X$, если $\bar A = X.$
+\end{definition}
+
+\begin{definition}[Нигде не плотное множество]
+    Множество $A\subset X$ нигде не плотно в $X$, если $\Int\bar A = \varnothing.$
+\end{definition}
+
+\begin{definition}
+    [Предел последовательности]
+    Последовательность $(x_n)_{n\in \N}$, то $x = lim_{n\to\infty} x_n$ означает, что \[
+    \forall \text{окрестность } O(x): (\exists N \in \N) (\forall n > N) x_n \in O(X).
+    \]
+\end{definition}
+
+\begin{remark}
+    Не всегда множество сходящихся последовательность определяет топологию. Например, если наше пространство не Хаусдорфово.
+\end{remark}
+
+\begin{proposition}
+    Любое метрическое пространство -- топологическое.
+\end{proposition}
+
+\subsection*{Примеры топологических пространств}
+
+\begin{example}[Дискретная метрика]
+    Топология $\T = \powerset X$. Она определена дискретной метрикой. 
+\end{example}
+
+\begin{example}[Антидискретная топология]
+    Топология $\T = \{\varnothing, X\}$
+\end{example}
+
+\begin{example}
+    $(X, <)$ -- линейно упорядоченное множество без наименьшего и набольшего. Определим интервал на нем \[(a;b) \defeq \{x\in X\such a < x, x < b\}.\]
+
+    Тогда $\T = \{\text{всевозможные объединения интервалов}\}$.
+\end{example}
+
+\begin{example}[Кофинитная топология]
+    Топология на $X$, т.ч. \[\T = \{A\subset X\such X\setminus A \text{ конечно}\}\cup\{0\}.\]
+\end{example}
+
+\section{Окрестность :)}
+
+\begin{definition}[Открытая окрестность]
+    Открытой окрестностью точки $x\in X$ (топ. пространства)  $\forall \mathcal N \in \T$, т.ч. \[x\in \mathcal N.\]
+\end{definition}
+
+\begin{definition}[Окрестность]
+    Окрестностью точки $x\in X$ (топ. пространства)  $\forall \mathcal A \in \T$, т.ч. \[\exists \mathcal N \in \T \quad x \in \mathcal N \subset \mathcal A.\]
+\end{definition}
+
+\begin{remark}
+    Если вместо точки $x$ взять подмножество $Z \subset X$, окрестность $Z$ определяется \[Z \subset \mathcal N \subset X.\]
+\end{remark}
+
+\subsection{Хаусдорфово пространство}
+
+\begin{definition}[Хаусдорфово пространство]
+    Топологическое пространство $(X, \T)$ таково, если \[
+    (\forall x, y \in X) x \neq y \implies \exists \text{ окрестность } \mathcal N_x \ni x, \mathcal N_y \ni y: \mathcal N_x \cap \mathcal N_y = \varnothing.
+    \]
+\end{definition}
+
+\begin{theorem}
+    Любое метрическое пространство Хаусдорфово.
+\end{theorem}
+\begin{proof}
+    Пусть $x \neq y \in X$, а $\rho(x, y) = \varepsilon > 0$. Тогда \[\mathcal N_x = B_{^\varepsilon/_2}(x), \quad \mathcal N_y = B_{^\varepsilon/_2}(y).\] Тут всё ок.
+\end{proof}
+
+\begin{example}
+    Антидискретная метрика и кофинитная метрика не хаусдорфовы.
+\end{example}
+
+
+\subsection{База топологии}
+
+\begin{definition}[База топологии]
+    $(X, \T)$ -- топологическое пространство $\mathcal B \in \T$ называется так, если \(\mathcal T = \{\text{объединение множеств из }\mathcal B\}.\) 
+\end{definition}
+
+\begin{theorem}
+    $X$ -- множество, $\mathcal B \subset \powerset X$. $\mathcal B$ -- база некоторой топологии на $X$, если и только если $\bigcup_{B\in\mathcal B}B = X$ и \[
+    (\forall A, B \in \mathcal B) (\forall a \in A \cap B)(\exists c \in \mathcal B)\quad a \in (C \subset A \cap B).
+    \]
+\end{theorem}
+
+\begin{proof}
+
+
+    \ifandonlyproof{$\mathcal B$ -- база топологии, тогда 
+    Значит $\forall A, B \underset{\text{открыто}}{\in} \mathcal B$, следует что и $A\cap B$ открыто. А это означает, что \[A\cap B =\bigcup\text{элементов базы}.\]}
+    {Пусть $\forall a \in A\cap B \implies \exists C \in \mathcal B: a \in C$. $$\T = \{\text{объединение элементов из }\mathcal B\}$$
+        
+        Проверяем аксиомы.
+        \begin{conditions}
+            \item $\varnothing \in \T$;
+            \item $$\bigcup_\alpha A_\alpha \cap \bigcup_\beta B_\beta = \bigcup_{\alpha, \beta} (A_\alpha \cap B_\beta).$$ Тогда $A_\alpha \cap B_\beta \in \T$ по предположению.
+        \end{conditions}    
+        }
+\end{proof}
+
+\begin{definition}[Локальная база]
+    $(X, \T)$ -- топологическое пространство, $x\in X$. Тогда $\mathcal B_x \subset \powerset X$ называется локальной базой точки $x$, если
+    \begin{conditions}
+        \item $\forall B \in \mathcal B_x$ -- окрестность точки $x$;
+        \item $\forall \text{ окрестности }V\ni x \implies \exists B \in \mathcal B_x: B \subset V.$
+    \end{conditions}
+\end{definition}
+
+\begin{definition}[Первая аксиома счётности]
+    Скажем, что $X$ удовлетворяет первой аксиомы счётности, если $\forall x \in X$ существует счётная локальная база.
+\end{definition}
+
+\begin{theorem}
+    Метрическая пространства удовлетворяют первой аксиоме счётности.
+\end{theorem}
+\begin{proof}
+    Возьмём $\mathcal B_x = \{U_{^1/_n} (x)\}.$
+\end{proof}
+
+\begin{example}
+    Пусть $\alpha_0$ -- несчётный ординал.
+    $$X = \{\text{все несчетные ординалы меньше чем $\alpha_0 +1$}\}.$$ $\mathcal B = \{\text{интервалы}, 0, \alpha_0\}$
+\end{example}
+
+\subsection{Индуцированная топология}
+
+\begin{definition}
+    [Индуцированная топология]
+    $(X, \T)$ -- топологическое пространство, а $Y \subset X$. Топология $\T_Y$ индуцированная (из $X$) на $Y$. \[
+    \T_Y \defeq \{O\cap Y| O\in \T\}.
+    \]
+\end{definition}
+
+\begin{lemma}
+    $\T_Y$ -- это топология.
+\end{lemma}
+\begin{proof}
+    \begin{conditions}
+        \item $Y = X \cap Y,\; \varnothing = \varnothing\cap Y \implies \varnothing, Y \in \T_Y.$ 
+        \item Если $A, B \in \T$, то $(A\cap Y) \cap (B\cap Y) = (A \cap B) \cap Y \in \T_Y$.
+        \item Если $A_\lambda \in \T$, то $\bigcup_{\lambda \in \Lambda} (A_\lambda \cap Y) = (\bigcup_{\lambda\in\Lambda}A_\lambda) \cap Y \in \T_Y.$
+    \end{conditions}
+\end{proof}
+\begin{corollary}
+    Пусть $Y$ открыто в $X$ и $A\subset Y$. Тогда \[
+    A \in \T_y \ifandonly A \in \T.
+    \]
+\end{corollary}
+\begin{proof}
+    \ifandonlyproof{
+    $$A\in \T_Y \implies A = \underbrace{O}_{\in \T} \cap Y \in \T.$$
+    }
+    {$$A\in T\implies A = A \cap Y \in \T_Y.$$}
+\end{proof}
+
+\begin{theorem}
+    $(X, \rho)$ -- метрическое пространство, $Y \subset X$. ТОгда $\T_Y$ порождает индуцированную метрику.
+\end{theorem}
+\begin{proof}
+    Если $y\in Y$, то \[
+    U_\varepsilon^Y(y) = \{y'\in Y\such \rho(y', y) < \varepsilon\} = U_\varepsilon^X(y)\cap Y.
+    \]
+    
+    А открытое множество -- пересечение открытых шаров.
+\end{proof}
+
+\section{Непрерывные функции}
+\begin{definition}
+    [Непрерывное отображение в метрических пространствах]
+    $(X, \rho_X), (Y, \rho_Y)$ -- метрические пространства. Отображение $f\colon X \to Y$ непрерывно в точке $x_o$, если \[
+    (\forall \varepsilon > 0)(\exists \delta > 0) \rho_X(x,x_0) < \delta \implies \rho_Y(f(x), f(x_0)) < \varepsilon.
+    \]
+\end{definition}
+
+\begin{definition}
+    [Непрерывное отображение в топологческих пространствах]
+    $(X, \T_X), (Y, \T_Y)$ -- метрические пространства. Отображение $f\colon X \to Y$ непрерывно в точке $x_o$, если \(
+        \forall \text{окрестность }O(f(x_0))\) \(\exists \text{окрестность }O(x_0)
+    \)
+    \[
+    (x\in O(x_0)) \implies f(x) \in O(f(x_0))\footnotemark.
+    \]\footnotetext{Иначе говоря $(f(O(x_0)) \subset O(f(x_0)).$}
+\end{definition}
+
+\begin{theorem}
+    $X, Y$ -- топологические пространства. Отображение $f\colon X \to Y$ непрерывно в каждой точке $X$, тогда и только тогда \[
+    \forall V \in \T_Y\quad f^{-1}(V) \in \T_X.
+    \]
+\end{theorem}
+\begin{proof}
+    \ifandonlyproof{
+        Пусть $f$ непрерывна в каждой точке, Тогда $$f^{-1}(V) = \bigcup_{x\in f^{-1}(V)}O(x) \in \T_X.$$
+        \[
+        \forall x \in f^{-1}(V) \exists \text{открытая } O(x): 
+        \]\[f(O(x))\subset V.\]
+    }{
+    Пусть прообраз открытого открыт, введем $x_o \in X$ и окрестность $O(f(x_0))$.
+    $V$ -- открытая окрестность точки $f(x_0)$ такая, что $V \subset O(f(x_0))$. Тогда $f_{-1}(V)$ -- искомая окрестность точки $x_0$.
+    }
+\end{proof}
+
+\begin{proposition}
+    Если отображение $f\colon X \to Y$ и $A\subset X$, то $f|_A: A\to Y$ непрерывно
+\end{proposition}
+\begin{proof}
+    $V\in \T_Y$ тогда $$f^{-1}(V) \in \T_X \implies \underbrace{A\cap f^{-1}(V)}_{=f|_{A}^{-1}(V)} \in \T_A$$
+\end{proof}
+
+\begin{proposition}
+    Если отображение $f\colon X \to Y$ непрерывно и $x = \lim_{n\to\infty} x_n$, то $f(x) = \lim_{n\to\infty}x_n$.\footnote{Если $X, Y$ удовлетворяет первой аксиоме счётности, то верно и обратное.}
+\end{proposition}
+
+
+
+\begin{definition}[Гомеоморфизм]
+    $f\colon X\to Y$ гомеоморфизм, если 
+    \begin{conditions}
+        \item $f$ биекция;
+        \item $f$ непрерывно;
+        \item $f^{-1}$ непрерывно\footnote{(ii) и (iii) эквивалетно $A \in \T_X \ifandonly f(A) \in \T_Y$}.
+    \end{conditions}
+\end{definition}
+
+\subsection{Тонкости}
+
+\begin{definition}
+    Если $X$ -- множество и $\T_1, \T_2$ -- топологии на нём. Если $\T_1 \subset \T_2$, то говорят, что $\T_2$ тоньше чем $\T_1$, или $\T_1$ грубее чем $\T_2$.
+\end{definition}
+\begin{proposition}
+    $\id:(X, \T_1) \to (X, \T_2)$ \begin{conditions}
+        \item $\T_1 \subset \T_2 \ifandonly \id^{-1}$ непрерывно;
+        \item $\T_2 \subset \T_1 \ifandonly \id$ непрерывно. 
+    \end{conditions}
+\end{proposition}
+
+\begin{definition}[Прямое произведение]
+    $(X_1, \T_1), (X_2, \T_2)$ -- топологические пространства. $(X_1\times X_2, \T_1 \times \T_2)$ определяется так: базой топологии $\T_1\times\T_2$ является $\{O_1\times O_2 \such O_1 \in \T_1, \; O_2 \in \T_2\}$.
+\end{definition}
+
+\begin{proposition}
+    $\{O_1 \times O_2\}$ действительно база топологии.
+\end{proposition}
+\begin{proof}
+    \begin{conditions}
+        \item $X_1 \times X_2 = \mathcal B$.
+        \item $(O_1 \times O_2) \cap (O_1'\times O_2') = (O_1\cap O_1')\times(O_2 \cap O_2').$
+    \end{conditions}
+\end{proof}
+
+\begin{definition}
+    [Проекции]
+    Отображение $\pr_{X_1}: X_1\times X_2 \to X_1$ называется проекцией. \(\pr_{X_1}(x_1, x_2) \defeq = x_1.\)
+\end{definition}
+
+\begin{lemma}
+    Проекции непрерывны.
+\end{lemma}
+\begin{proof}
+    \[
+    \pr_{X_1}^{-1}(O_1) = O_1 \times X_2 \in \T_1 \times \T_2.
+    \]
+\end{proof}
+
+\begin{proposition}
+    $\T_1 \times \T_2$ -- самая грубая топология, для которой $\pr_{X_1}, \pr_{X_2}$ непрерывны. 
+\end{proposition}
+
+\begin{proof}
+    Если $\T$ -- топология на $X_1 \times X_2$, т.ч. $\pr_{X_1}, \pr_{X_2}$ непрерывны, тогда \(\T_1 \times \T_2 \subset T\). \[
+    O_1 \times O_2 = (O_1 \times X_2) \cap (O_2 \times X_1) \in \T.
+    \]
+\end{proof}

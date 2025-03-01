@@ -1,0 +1,141 @@
+\ProvidesPackage{be-my-concrete}
+
+% Fonts
+\RequirePackage[utf8]{inputenc}
+\RequirePackage{fontspec}
+\RequirePackage[T2A]{fontenc}
+\RequirePackage[russian]{babel}
+\setmainfont[Ligatures=TeX]{Cambria}
+\setsansfont{Arial Narrow}
+\setmonofont{Consolas}[Scale = 0.93]
+\RequirePackage{unicode-math}
+\setmathfont{Cambria Math} 
+
+
+
+% Etc. Packages
+\RequirePackage{graphicx, multicol, import, epigraph, coffeestains}
+\RequirePackage[svgnames]{xcolor}
+%\coffeestainA{0.3}{0.7}{-25}{3cm}{1.3cm}
+
+
+
+
+% Hyperref
+\RequirePackage[
+	colorlinks=true,
+	linkcolor=Crimson,
+	urlcolor=Navy,
+	pdftitle={Домашка по топологии},
+	pdfauthor={Лунёв Егор Артёмович},
+]{hyperref}
+
+
+
+
+% Math Packages
+\RequirePackage{amsmath, amsthm, amsfonts}
+\RequirePackage{witharrows}
+%\begin{DispWithArrows}[displaystyle, wrap-lines, tagged-lines = last, fleqn, mathindent = 0 pt]
+
+%\end{DispWithArrows}
+
+%% Theorems
+\theoremstyle{plain}
+\newtheorem{theorem}{Теорема}[section]
+\newtheorem{lemma}[theorem]{Лемма}
+\newtheorem{proposition}[theorem]{Утверждение}
+\newtheorem{corollary}{Следствие}[theorem]
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Определение}
+\theoremstyle{remark}
+\newtheorem*{remark}{Замечание}
+\newtheorem{example}{Пример}
+\counterwithin*{example}{theorem}
+\counterwithin*{example}{corollary}
+\counterwithin*{example}{section}
+\counterwithin{equation}{section}
+
+%% cleveref
+\RequirePackage[russian, noabbrev]{cleveref}
+\crefname{tasksi}{задачи}{задач}
+\crefname{tasksii}{задачи}{задач}
+\crefname{theorem}{теоремы}{теорем}
+\crefname{lemma}{леммы}{лемм}
+\crefname{equation}{уравнения}{уравнения}
+\crefname{corollary}{следствия}{следствия}
+\crefname{definition}{определения}{определения}
+\crefname{remark}{замечания}{замечаний}
+\crefname{proposition}{утверждения}{утверждений}
+\crefname{example}{примера}{примеров}
+\crefname{table}{таблицы}{таблиц}
+\crefname{figure}{рисунку}{рисункам}
+
+
+
+
+
+% Lists
+\RequirePackage{enumitem}
+\newlist{conditions}{enumerate}{2}
+
+\setlist[conditions, 1]{
+	label=(\roman{conditionsi}), %(i), (ii), (iii), ...
+	leftmargin=1cm,
+	rightmargin=.5cm
+}
+\setlist[conditions, 2]{
+	label=(\roman{conditionsi}.\alph{conditionsii}), % (i.a), (i.b), (i.c)
+	leftmargin=1cm,
+	rightmargin=.5cm}
+
+
+\newlist{tasks}{enumerate}{2}
+\setlist[tasks, 1]{
+	label={\textbf{Задача \arabic{tasksi}:}},
+	leftmargin = 1mm,
+	labelsep = 5mm,
+	itemindent = 2.05cm
+}
+\setlist[tasks, 2]{
+	label=(\arabic{tasksi}.\alph{tasksii}),
+	leftmargin = 15pt,
+}
+
+
+
+
+% Aliases
+%% \renewcommand
+\renewcommand{\C}{\mathbb C}
+\renewcommand{\bar}{\overline}
+\renewcommand{\vec}{\overrightarrow}
+
+%% \DeclareMathOperator
+\DeclareMathOperator{\im}{im}
+\DeclareMathOperator{\id}{id}
+\DeclareMathOperator{\pr}{pr}
+
+%% \newcommand
+\newcommand*\rfrac[2]{{}^{#1}\!/_{#2}}
+\newcommand{\such}{\,|\,}
+\newcommand{\R}{\mathbb R}
+\newcommand{\Q}{\mathbb Q}
+\newcommand{\Z}{\mathbb Z}
+\newcommand{\N}{\mathbb N}
+\newcommand{\T}{\mathcal T}
+\newcommand{\powerset}[1]{\mathcal{P}(#1)}
+\newcommand{\defeq}{\overset{def}{=}}
+\makeatletter
+\newcommand*{\coloneq}{\mathrel{\rlap{%
+			\raisebox{0.3ex}{$\m@th\cdot$}}%
+		\raisebox{-0.3ex}{$\m@th\cdot$}}%
+	=}
+\newcommand*{\eqcolon}{=
+	\mathrel{\rlap{%
+			\raisebox{0.3ex}{$\m@th\cdot$}}%
+		\raisebox{-0.3ex}{$\m@th\cdot$}}%
+}
+\makeatother
+
+\newcommand{\ifandonly}{\Longleftrightarrow}

@@ -1,0 +1,205 @@
+\date{4 декабря 2024}
+
+\section{Метрическое пространство}
+\begin{definition}[Метрическое пространство]
+    Это пара $(X, \rho)$, где $X$ -- множество, а $\rho\colon X\times X\to \R_{\geqslant 0}$ -- метрика, т.ч. \begin{conditions}
+        \item $\rho(a,b) = 0 \ifandonly a = b \quad \forall a,b \in X;$ 
+        \item $\rho(a,b) = \rho(b,a) \quad \forall a,b \in X;$
+        \item $\rho(a, b) + \rho(b,c) \geqslant \rho(a,c) \quad \forall a,b,c \in X.$\footnotemark
+    \end{conditions}
+    \footnotetext{В яслях это зовут \emph{неравенством треугольника}.}
+\end{definition}
+\begin{definition}
+    [Индуцированная метрика]
+    $Y \in X$, то можно ввести $\rho_Y\colon Y\times Y \to \R_{\geqslant0}$: \[
+    (\forall y, y' \in Y)\quad \rho_Y(y, y') = \rho_X(y, y')
+    \]
+
+    То есть $\rho_Y = \rho_X|_{Y\times Y}$.
+\end{definition}
+\subsection*{Примеры метрических пространств}
+\begin{example}[Дискретная метрика]
+    $X$ -- любое непустное множество. \begin{equation}
+        \rho(x,y) = \begin{cases}
+            0, & x=y \\
+            1, &otherwise
+        \end{cases}
+    \end{equation}
+\end{example}
+\begin{example}[квартальная (Манхэттенская) метрика, метрика Минковского-1]
+    $X = \R^n$, $x = (x_1, \ldots, x_n), y =(y_1, \ldots, y_n)$. \begin{equation}
+        \rho_1(x,y) = \sum_{i=1}^n |x_i-y_i|.
+    \end{equation}
+\end{example}
+\begin{example}[Евклидова метрика, метрика Минковского-2]
+    $X = \R^n$, $x = (x_1, \ldots, x_n), y =(y_1, \ldots, y_n)$. \begin{equation}
+        \rho_2(x,y) = \sqrt{\sum_{i=1}^n (x_i-y_i)^2}.
+    \end{equation}
+\end{example}
+
+\begin{example}[метрика Чебышева, метрика Минковского-$\infty$]\index{Метрическое пространство!Метрика Чебышева}
+    $X = \R^n$, $x = (x_1, \ldots, x_n), y =(y_1, \ldots, y_n)$. \begin{equation}
+        \rho_\infty(x,y) = \max_{1\leqslant i\leqslant n}|x_i - y_i|.
+    \end{equation}
+\end{example}
+
+\begin{example}
+    $G = (V, E)$ -- связный граф. $\rho\colon V\times V \to \R_{\geqslant 0}.$
+    \begin{equation}
+        \rho(a,b) = \text{количество рёбер в кратчайшем пути из } a \text{ в } b.
+    \end{equation}
+\end{example}
+\begin{example}[Парижская метрика]
+    $X = \R^n$, $x = (x_1, \ldots, x_n), y =(y_1, \ldots, y_n)$.
+    \begin{equation}
+    \rho(x,y) = \begin{cases}
+        \rho_2(x, y), &\text{если } x, y \text{ лежат на одном луче из нуля}\\
+        \rho_2(0,x) + \rho_2(0, y), &otherwise
+    \end{cases}
+    \end{equation}
+\end{example}
+\subsection{Изометрия}
+\begin{definition}[Изометрия]
+    $(X, \rho_X), (Y, \rho_Y)$ -- метрические пространства. $f\colon X\to Y$ называется изометрией, если
+    \begin{conditions}
+        \item $f$ биекция\setcounter{footnote}{0}\footnote{Если не учитывать это условие, то это будет называться \emph{изометрическим вложением}.};
+        \item $(\forall a, b \in X)\quad \rho_Y(f(a), f(b)) = \rho_X(a, b).$
+    \end{conditions}
+\end{definition}
+
+\subsection{Сжимающие отображения}
+\begin{definition}
+    [Сжимающее отображение]
+    $f\colon X \to X$ сжимающее, если $\exists q \in (0, 1)$, т.ч. \[\rho(f(x), f(y)) \leqslant q \rho(x,y).\]
+\end{definition}
+
+\begin{theorem}
+    Если $f$ -- сжимающее отображение полного пространства $X$, то \[\exists x_0 \in X: f(x_0)=x_0.\]
+\end{theorem}
+\begin{proof}
+    Возьмём любое $x_1 \in X$. Определим $x_2 = f(x_1).$ Также определим и дальше, т.е. $x_{n+1} = f(x_n).$
+    \begin{align}
+        \rho(x_1, x_n) \leqslant \rho(x_1, x_2) + \rho(x_2, x_3) + \cdots + \rho(x_{n-1}, x_n) \leqslant \\ \leqslant\rho(x_1, x_2)\underbrace{(1+q+q^2+\cdots+q^{n-2})}_\gamma.
+    \end{align}
+    \begin{equation}
+        \rho(x_n, x_{2n-1}) \leqslant \gamma \cdot \rho(x_n, x_n+1) \leqslant Cq^{n-1}\rho(x_1, x_2) \underset{n\to\infty}{\longrightarrow} 0.
+    \end{equation}
+    Тогда возьмём $x_0 = \lim_{n \to\infty} x_n.$ Тогда $f(x_0) = x_0.$
+\end{proof}
+
+\section{(Сме)шарики и другие множества}
+\begin{definition}
+    [Открытый шар]
+    Множество $U_r(x)$ называется открытым шаром с центром в точке $x$ и радиусом $r$. \[U_r(x) = \{y\in X \such \rho(x, y) < r\}\addtocounter{footnote}{1}\footnote{\emph{Проколотый шар} $\mathring U_r(x) \defeq U_r(x) \setminus {x}.$}.\]
+\end{definition}
+
+\begin{definition}
+    [Открытое множество]
+    $A \subset X$ называется открытым, если \[
+    (\forall a \in A)(\exists r > 0) \quad U_r(a) \subset A.
+    \]
+\end{definition}
+
+\begin{theorem}
+    \begin{conditions}
+        \item $X, \varnothing$ открыты в $X$;
+        \item $A, B$ открыты в $X$, тогда и $A\cap B$ открыто в $X$;
+        \item $(A_\psi)_{\psi \in \Psi}$ открыты в $X$, тогда и $\bigcup_{\psi\in\Psi}A_\psi$ открыто в $X$.
+    \end{conditions}
+\end{theorem}
+
+\begin{definition}
+    [Замыкание множества]
+    Множество $A \subset X$. \[\overline A \defeq \{x\in X\such \forall \varepsilon>0 \quad U_\varepsilon(x)\cap A \neq \varnothing\}.\]
+\end{definition}
+\begin{definition}
+    [Замкнутое множество]
+    Множество $A\subset X$ называется замкнутым в $X$, если $\overline A = A.$
+\end{definition}
+
+\begin{theorem}
+    $A \subset X$  замкнуто в $X$, тогда $X\setminus A$ открыто в $X.$
+\end{theorem}
+\begin{proof}
+    $A$ замкнуто, значит \begin{equation}\label{eq:1.7}
+        U_\varepsilon(x) \cap A \neq \varnothing \quad \forall \varepsilon > 0 \ifandonly x \in A.
+    \end{equation}
+    \begin{equation}\label{eq:1.8}
+        x\not\in A \ifandonly \exists \varepsilon > 0: U_\epsilon(x) \in X \setminus \ A.
+    \end{equation}
+    Заметим, что условия \labelcref{eq:1.7,eq:1.8} эквиваленты. 
+\end{proof}
+
+\begin{corollary}
+    \begin{conditions}
+        \item $X, \varnothing$ замкнуты в $X$;
+        \item $A, B$ замкнуты в $X$, тогда и $A\cup B$ замкнуто в $X$;
+        \item $(A_\psi)_{\psi \in \Psi}$ замкнуты в $X$, тогда и $\bigcap_{\psi\in\Psi}A_\psi$ замкнуто в $X$.
+    \end{conditions}
+\end{corollary}
+
+\subsection{Плотность}
+\begin{definition}
+    [Всюду плотное множество]
+    Множество $A \subset X$ всюду плотно в $X$, если $\overline A = X.$
+\end{definition}
+\begin{definition}
+    [Нигде не плотное множество]
+    Множество $A\subset X$ нигде не плотно в $X$, если \[(\forall x \in X)(\forall \varepsilon > 0) \quad U_\varepsilon(x)\not\subset \overline A.\]
+\end{definition}
+\subsection{Полное пространство}
+\begin{definition}
+    [Полное пространство]\label{def:fullness}
+    Метрическое пространство $(X, \rho)$ полно, если любая фундаментальная последовательность сходится.
+\end{definition}
+\begin{proposition}
+    $\R^n$ полное.
+\end{proposition}
+\begin{proposition}
+    $\Q$ не полно.
+\end{proposition}
+\begin{proof}
+    $\sqrt 2$ не лежит в $\Q$.
+\end{proof}
+
+\section{Принцип сжимающих отображений}
+\begin{definition}
+    [Сжимающее отображение]
+    Отображение $f\colon X \to Y$ сжимающее, если $\exists q \in (0, 1).$
+\end{definition}
+
+\begin{definition}[Непрерывность]
+    $f\colon X \to Y$ -- непрерывно в точке $a\in X$, если выполнено одно из следующих условий:
+    \begin{conditions}
+        \item Любая последовательность $(x_n)_{n\in \N}$:
+        \[\lim_{n\to\infty} x_n \implies \lim_{x\to a} f(x_n) = f(a).\]
+        \item \((\forall \varepsilon > 0 )(\exists \delta >0) \rho(x, a) < \delta \implies \rho(f(x), f(a)) < e.\)
+    \end{conditions}
+\end{definition}
+
+\begin{definition}[Лишицево отображение]
+    Отображение $f\colon (X, \rho_X)\to (Y,\rho_Y)$ называется липшицевым с константой $L$ (или $L$-липшицевым), если \[\rho_Y(f(x), f(y)) \leqslant L\rho_X(x,y).\]
+\end{definition}
+
+\begin{theorem}
+    Липшицевость влечет непрерывность.
+\end{theorem}
+
+\begin{corollary}
+    Cжимающее отображение липшицево.
+\end{corollary}
+\begin{proof}
+    $x_{n+1} = f(x_n)$.
+    \[\lim_{n\to\infty} x_{n+1} = x = \lim f(x_n) = f(x).\]
+\end{proof}
+
+\subsection{Гомеоморфизм}
+
+\begin{definition}[Гомеоморфизм]
+    $f\colon X\to Y$ гомеоморфизм, если 
+    \begin{conditions}
+        \item $f$ биекция;
+        \item $f$ непрерывно;
+        \item $f^{-1}$ непрерывно.
+    \end{conditions}
+\end{definition}

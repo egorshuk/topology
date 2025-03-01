@@ -1,0 +1,84 @@
+\documentclass[10pt]{article}
+\usepackage{../be-my-concrete}
+\usepackage{../be-my-geometry}
+\usepackage{../extra-topology}
+
+\begin{document}
+\makedz{9}
+\coffeestainA{0.15}{0.6}{-25}{5cm}{1.3cm}
+%\tableofcontents
+\begin{tasks}
+	\addcontentsline{toc}{section}{Задача 1} \item  Существует ли отношение эквивалентности на отрезке, факторпространство по которому гомеоморфно объединению 3 отрезков с общим концом? Строго обоснуйте ответ.
+	
+	\begin{proof}[Решение]
+		На отрезке $AE$ выберем точки $B, C, D$ так, чтобы $AB \subset AC \subset AD \subset AE.$ Введем такое отображение $$f \colon AE \to AE, \qquad \left.\begin{aligned}
+			AB \mapsto AB\\
+			BC \mapsto BC\\
+			CD \mapsto BC\\
+			DE \mapsto DE
+		\end{aligned} \right.$$
+		
+		\begin{figure}[h]
+			\centering
+			\begin{asy}
+				size(9cm);
+				defaultpen(fontsize(10pt));
+				draw((0,0)--(4,0), linewidth(bp));
+				dot("$A$", (0,0), N);
+				dot("$B$", (1,0), N);
+				dot("$C$", (2,0), N);
+				dot("$D$", (3,0), N);
+				dot("$E$", (4,0), N);
+				
+				draw((5,0)--(6,0),arrow=ArcArrow(SimpleHead));
+				label("$f$", (5.5, 0.05), align=N);
+				
+				draw((7,0)--(8.5,0)--(8.5,1.5)--(8.5,0)--(10,0), linewidth(bp));
+				
+				dot("$f(A)$", (7,0), N);
+				dot("$f(B)=f(D)$", (8.5,0), S);
+				dot("$f(C)$", (8.5,1.5), NE);
+				dot("$f(E)$", (10,0), N);
+				
+			\end{asy}
+			\caption{Отрезок $AE$ и $f(AE)$.}
+		\end{figure}
+		
+		Такое отображение является непрерывной сюръекцией\footnote{Прообразами откртых являются либо одно, либо два открытых множества в $AE$; а объединение двух открытых множеств открыто.}. Отрезок $AE$ является компактом, а $f(AE)$ хаусдорфово. Тогда \[\frac{AE}{\sim_f} \cong \text{объединение 3 отрезков с общим концом}.\]  
+		
+		\ans{Да.}
+	\end{proof}
+	
+	
+	%\addcontentsline{toc}{section}{Задача 2} \item Факторпространство топологического пространства по некоторому отношению эквивалентности является хаусдорфовым тогда и только тогда, когда любые два класса эквивалентности обладают непересекающимися насыщенными открытыми окрестностями. Докажите.
+	
+	%Останется ли данное утверждение верным, если удалить слово "открытыми"?
+	
+	%Напомним, что окрестность подмножества $A\subset X$ топологического пространства $X$ — это такое подмножество $O\subset A$, в котором есть открытое подмножество $U\supset A$, так что $A\subset U\subset O \subset X$.
+	
+	\addcontentsline{toc}{section}{Задача 3} \item Проективная прямая $\R P^1$ вкладывается в проективную плоскость $\R P^2$ следующим образом: точке из $\R P^1$ с однородными координатами $[x_0:x_1]$ соответствует точка $[x_0:x_1:0]\in \R P^2$. Докажите, что дополнение $\R P^2\setminus \R P^1$ гомеоморфно плоскости $\R^2$ со стандартной топологией.
+	
+	\begin{proof}
+		[Решение] 
+		$\R P^2 \setminus \R P^1 = \{[x_0:x_1:x_2]\such x_2 \neq 0\}.$ Тогда рассмотрим $$f \colon \R P^2 \setminus \R P^1 \hookrightarrow R^2, \quad [x_0:x_1:x_2] \mapsto \left( \frac{x_0}{x_2}, \frac{x_1}{x_2}\right)\footnotemark.$$
+		\footnotetext{Отображение $f$ корректно определено, так как $x_2 \neq 0$.}
+		Проверим что оно является сюръективным и инъеквтиным, а следовательно биективным.
+		\begin{conditions}
+			\item \textit{Инъективность.} Пусть $f([x_0:x_1:x_2]) = f([\tilde x_0 : \tilde x_1 : \tilde x_2])$. Тогда \[\frac{x_0}{x_2} = \frac{\tilde x_0}{\tilde x_2} = \frac{\lambda \tilde x_0}{x_2}, \quad \frac{x_1}{x_2} = \frac{\tilde x_1}{\tilde x_2}  = \frac{\lambda \tilde x_1}{x_2},\qquad \exists \lambda \in \R: \quad \lambda \tilde x_2 = x_2.\]
+			Ну и понятно, что \[[x_0: x_1:x_2] = [\lambda x_0:\lambda x_1 :\lambda x_2].\]
+			\item \textit{Сюръективность.} \[f^{-1}((a, b)) \ni [a : b : 1].\]
+		\end{conditions}
+		Осталось проверить существование и непрерывность обратного.
+		
+		Определим отображение $$g \colon \R^2 \to \R P^2 \setminus \R P^1, \quad (a,b) \mapsto [a:b:1].$$
+		\[(f\circ g)(a,b) = f([a:b:1]) = (a,b).\]
+		\[(g\circ f)([a:b:1]) = g(a,b) = [a:b:1].\]
+		
+		Получаем, что $f$ и $g$ обратны друг другу, а также $f, g$ являются непрерывными. Таким образом $f$ -- гомеоморфизм пространств $\R P^2 \setminus \R P^1$ и $\R^2$.
+	\end{proof}
+	
+	%\addcontentsline{toc}{section}{Задача 4} \item Определите подпространство в $\C P^2$, гомеоморфное пространству $\R P^2$.
+\end{tasks}
+
+
+\end{document}

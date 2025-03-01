@@ -1,0 +1,124 @@
+\date{22 января 2025}
+\begin{definition}
+    [Секвенцальная компактность]
+    Топологическое пространство $X$ называется секвенцально компактным, если из любой последовательности можно выделить сходящуюся подпоследовательность, то есть \[\forall x_n \subset X \quad\exists(n_k) \quad x_{n_k}\underset{k \to\infty}\to x \in X.\]
+\end{definition}
+
+\begin{definition}
+    [Открытое покрытие]
+    В топологическом пространстве $X$ $\mathcal U = (U_\lambda)_{\lambda \in \Lambda}$ -- семейство открытых подмножеств в $X$. Это открытое покрытие, если \[X = \bigcup_{\lambda \in \Lambda}U_{\lambda}.\] Если $Y\subset X$ тогда покрытие подпространства $Y$ это $(V_{\lambda}\cap Y)_{\lambda\in \Lambda}.$ Или что эквивалентно \[
+    Y \subset \bigcup_{\lambda\in\Lambda}V_{\lambda}, \qquad(V_\lambda\in \T_{\lambda}).
+    \]
+    Конечное покрытие, если оно покрывается конечным числом открытых множеств.
+\end{definition}
+
+\begin{definition}
+    [Компактность]
+    Топологическое пространство $X$ называется компактом, если из любого открытого покрытия можно выделить конечное подпокрытие.
+\end{definition}
+
+\begin{definition}
+    [Центрированность]
+    Семейство $\mathcal F = (F_\lambda)_{\lambda\in\Lambda}$ замкнутых подмножеств в $X$ называется центрированным, если \[F_{\lambda_1}\cap\ldots\cap F_{\lambda_n} \neq \emptyset, \qquad \forall \lambda_1, \ldots, \lambda_n \in \Lambda.\]
+\end{definition}
+
+\begin{proposition}
+    $X$ компактно тогда и только тогда, когда любое семейство $\mathcal F$ замкнутых множеств \[\bigcap_{\lambda \in \Lambda} F_\lambda \neq \emptyset.\] 
+\end{proposition}
+\begin{proof}
+    $\mathcal U = (U_\lambda)_{\lambda\in \Lambda}$ семейство открытых множеств. Тогда $\mathcal F = (F_{\lambda}\coloneq X \setminus U_{\lambda})_{\lambda \in \Lambda}.$ Тогда $\mathcal U$ покрытие, то есть в $\mathcal U$ есть конечное подкопрытие, эквивалетно тому что $\bigcap_{\lambda \in \Lambda} F_\lambda \neq \emptyset.$, т.е. \[\exists \lambda_1, \ldots, \lambda_n\qquad F_{\lambda_1} \cap \ldots \cap F_{\lambda_n} = \emptyset.\]
+\end{proof}
+\begin{corollary}
+    Пусть $X$ компактно, $\mathcal F$ -- семейство замкнутых множеств такое, что \[
+    \forall \lambda, \lambda' \qquad (F_\lambda \subset F_{\lambda'})\lor(F_{\lambda'} \subset F_\lambda).
+    \]
+\end{corollary}
+\begin{corollary}
+    Пусть $X$ компактно, $\mathcal F$ -- семейство замкнутых множеств такое, что \(
+    \forall \lambda, \lambda' \qquad (F_\lambda \subset F_{\lambda'})\lor(F_{\lambda'} \subset F_\lambda).
+    \)
+    Если $F_\lambda \neq \emptyset$, то \[\bigcap_{\lambda\in\Lambda }F_\lambda \neq \emptyset.\]
+\end{corollary}
+\begin{corollary}
+    $X$ компактно, если для любого $n$ выполнено $\bar{F_n} = F_n$, $F_{n+1} \subset F_n$ и $F_n \neq \emptyset.$ То \[\bigcap_{n}F_n \neq \emptyset.\]
+\end{corollary}
+
+\begin{proposition}
+    Пусть $X$ дискретно и компактно тогда и только тогда, когда $X$ конечно.
+\end{proposition}
+\begin{proof}
+    \ifandonlyproof{Рассмотрим конкретное открытое покрытие \begin{equation}
+        X = \bigcup_{x \in X}\{x\}.
+    \end{equation} Тогда из него можно выделить конечное подпокрытие, то и $X$ конечно}{Очевидно.}
+\end{proof}
+
+\begin{theorem}
+    Пусть $X$ \emph{метрическое} компактное пространство, тогда оно секвенцально компактно.
+\end{theorem}
+
+\begin{proof}
+    Пусть $(x_n)_{n\in \N}\subset X$ и нет никакой сходящейся подпоследовательности. Тогда рассмотрим такие множества \[F_n = \{x_n, x_{n+1}, \ldots, \}.\]
+    Такие множества замкнуты ($\bar{F_n} = F_n$) и непусты так, как в замыкании лежат либо точки множества $F_n$, либо пределы каких-то сходящихся подпоследовательностей, но таких точек нет\footnote{Это и есть критерий замкнутости в метрическом пространстве $X$}.  А еще $F_{n+1} \subset F_n$. Значит \[\bigcap_{n\in \N} F_n \neq \emptyset.\] Что неверно, иначе бы последовательность сходилась, а значит и не компакт.
+\end{proof}
+
+\subsection{Замкнутость конкретных множеств}
+
+\begin{theorem}
+    Отрезок $[0;1]\subset \R$ компактен.
+\end{theorem}
+\begin{proof}
+     Будем доказывать от противного. $\mathcal U = (U_\lambda)_{\lambda\in{\Lambda}}$ открытое покрытие без конечного подпокрытие. Тогда $I_0 \coloneq [0;1]=[0;\rfrac 1 2 ]\cup [\rfrac 1 2; 1].$ Тогда выберем $I_1$ как ту половину, которая не покрывается конечным числом открытых множеств. Продолжая этот процесс получим семейство вложенных отрезков, длина которых стремится к 0. И каждый этот отрезок не покрывается конечным числом открытых множеств. Но \(\bigcap_{n} I_n = \{c\}\) и это множество открыто т.е, $c\in U_{\lambda_{c}}$. Тогда для достаточно большого номера $N$ верно, что $I_N \subset U_{\lambda_c}.$
+\end{proof}
+
+\begin{lemma}
+    Пусть $\mathcal B$ -- база топологии в $X$. Если для любого открытого покрытия множествами из $\mathcal B$ можно выделить конечное подпокрытие, то $X$ компактно.
+\end{lemma}
+\begin{proof}
+    Пусть $U$ -- какое-то открытое покрытие, тогда для $(\forall x \in X)$  возьмём $x\in B_x \in \mathcal B$. Тогда $B_x \subset U_\lambda.$ Тогда по предположению $X = B_{x_1} \cup \ldots \cup B_{x_n} \subset U_{\lambda_{x_1}}\cup \ldots \cup U_{\lambda_{x_n}}.$
+\end{proof}
+
+\begin{theorem}
+    $X_1$, $X_2$ -- компактны, тогда и $X_1 \times X_2$ тоже.
+\end{theorem}
+\begin{proof}
+    Пусть $\mathcal U$ -- открытое покрытие. Можно считать, что $\mathcal U = \{U_{\lambda}\times V_\lambda\}_{\lambda\in\Lambda}.$
+    
+    Для любого $x_1 \in X_1$ рассмотрим $\{x_1\}\times X_2 \subset X_1\times X_2$, также $\{x_1\} \times X_2 $ гомеоморфно $ X_2.$ (в качестве непрерывного отображение берем проекцию на $X_2$.) Тогда $\{x_1\}\times X_2$ компактно, а значит существует конечное подкокрытие, т.е 
+
+    \begin{equation}
+         \{x_1\}\times X_2 = (U_{\lambda_1}\times U_{\lambda_1})\cup\ldots\cup(U_{\lambda_n}\times U_{\lambda_n}).
+    \end{equation}
+
+    Тогда возьмём $U(x) \coloneq U_{\lambda_1}\cap \ldots \cap U_{\lambda_n}.$ Тогда $U(x) \times X_2$ покрывается $(U_{\lambda_1}\times U_{\lambda_1})\cup\ldots\cup(U_{\lambda_n}\times U_{\lambda_n}).$ 
+
+    А $\{U(x)\}$ -- открытое покрытие пространства $X_1$, т.е. $X_1 = U(x_1) \cup \ldots \cup U(x_n).$ Тогда 
+    \begin{equation}
+        X_1 \times X_2 = (U(x_1)\times X_2)\cup\ldots\cup (U(x_n)\times X_2).
+    \end{equation}
+\end{proof}
+
+\begin{corollary}
+    $[0;1]^n$ компактен.
+\end{corollary}
+
+\begin{theorem}
+    $X$ компактно, а $Y \subset X$ замкнуто, то $Y$ компактно.
+\end{theorem}
+\begin{proof}
+    Пусть $\mathcal F^Y$ -- центрированная система замкнутых подмножеств в $Y$, тогда это центрированная система и в $X$.
+\end{proof}
+
+\begin{corollary}
+    Любое замкнутое ограниченное подмножество в $\R^n$ компактно.
+\end{corollary}
+
+\begin{theorem}
+    Подмножество $A\subset \R^n$ компактно тогда и только тогда, когда замкнуто и ограничено.
+\end{theorem}
+\begin{proof}
+    $A\subset \R^n$ компактно, а значит секвенцально компактно. 
+    
+    Оно замкнуто, если $a_n \in A$ и $a_n \to a$, то и $a\in A.$ Иначе в этой последовательности нет сходящейся подпоследовательности, т.к. они все сходятся к $a.$
+
+    Оно ограничено, если все расстояния между точками $A$ ограничены. Иначе $\exists a_n \in A\quad \|a_n\| \to \infty.$ Значит тут нет сходящейся подпоследовательности.
+\end{proof}

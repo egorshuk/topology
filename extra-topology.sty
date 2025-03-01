@@ -1,0 +1,61 @@
+\ProvidesPackage{extra-topology}
+
+% Asymptote
+\RequirePackage[inline]{asymptote}
+\begin{asydef}
+	import graph;
+	settings.outformat = "pdf";
+\end{asydef}
+
+
+
+% Misc
+\usetikzlibrary{calc}
+
+
+
+% Fancy
+\RequirePackage{fancyhdr, hyperref}
+
+\pagestyle{fancy}
+
+\newcommand{\makedz}[1]{\pagestyle{fancy}
+	\fancyhead{}
+	\fancyhead[R]{
+		\href{https://t.me/egorrshuk}{егоррррршук}
+	}
+	\fancyhead[L]{
+		Введение в дискретную математику и топологию. \\
+		Домашка №#1
+	}
+	\fancyfoot{}
+	\fancyfoot[C]{\thepage}
+}
+
+
+
+
+
+
+
+
+% TOC
+\makeatletter
+\renewcommand\tableofcontents{%
+	%\section*{\makebox[\linewidth][c]{\contentsname}%
+		%  \@mkboth{\MakeUppercase\contentsname}{\MakeUppercase\contentsname}}%
+	\hfill{
+		\begin{minipage}{0.5\linewidth}
+			\begin{multicols}{2}%
+				\@starttoc{toc}%
+			\end{multicols}
+		\end{minipage}
+	}\vspace{3mm}}
+\makeatother
+
+
+
+
+
+% Aliases
+\newcommand{\ans}[1]{\textbf{Ответ:} #1}
