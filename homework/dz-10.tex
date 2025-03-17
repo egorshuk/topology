@@ -1,0 +1,23 @@
+\documentclass[10pt]{article}
+\usepackage{../be-my-concrete}
+\usepackage{../be-my-geometry}
+\usepackage{../extra-topology}
+
+\begin{document}
+\makedz{10}
+\tableofcontents
+\begin{tasks}
+	\addcontentsline{toc}{section}{Задача 1} \item \begin{tasks}
+		\item Пусть $X$ и $Y$ -- топологические пространства, а $y_0 \in Y$. Докажите, что отображение $\iota_{y_0}\colon X\to X \times Y$, заданное формулой $\iota_{y_0}(x)=(x,y_0)$, является гомеоморфизмом между пространством $X$ и подпространством $X\times\{y_0\}\subset X\times Y$ с индуцированной топологией.
+		\item Пусть $X$, $Y$, $Z$ -- топологические пространства, а отображение $f\colon X\times Y\to Z$ непрерывно. Докажите, что для всякой точки $y_0 \in Y$, отображение $f_{y_0} \colon X \to Z$, заданное формулой $f_{y_0}(x)=f(x,y0)$, непрерывно.
+	\end{tasks}
+\end{tasks}
+\begin{tasks}[start=3]
+	\addcontentsline{toc}{section}{Задача 3} \item Существует ли отношение эквивалентности на отрезке, факторпространство по которому гомеоморфно квадрату $[0;1]^2$? Строго обоснуйте ответ.
+	\begin{proof}
+		Квадрат хаусдорфов. Отрезок компактен. Значит нужно найти непрерывную сюръекцию из отрезка в квадрат. В качестве такой непрерывной сюръекции можно взять кривую Пеано (Гильберта). Ведь по теореме: \textit{непрерывное отображение $f\colon X \to Y$ из компакта $X$ в хаусдорфовое $Y$. То оно индуцируется до гомеоморфизма $\frac{X}{\sim_f}\to f(X).$}
+	\end{proof}
+\end{tasks}
+
+
+\end{document}
